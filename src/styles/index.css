@@ -9,3 +9,11 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+.btn-close-hover {
+       opacity: 0; /* Oculta el botón por defecto */
+       
+}
+
+.position-relative:hover .btn-close-hover {
+       opacity: 0.3; /* Muestra el botón al pasar el cursor */
+   }
