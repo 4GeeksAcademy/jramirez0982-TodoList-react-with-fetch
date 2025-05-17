@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 //include images into your bundle
-import ListElement from "./ListElement";
+
 
 //create your first component
 const Home = () => {
 
 	let arrayTask = [];
 	const [taskList, setTaskList] = useState([]);
-	
+
 	const handleKeyDown = (event) => {
 		if (event.keyCode === 13) {
 			setTaskList([...taskList, event.target.value])
@@ -32,21 +32,15 @@ const Home = () => {
 							onClick={() => {
 								setTaskList(taskList.filter((value, indexTaskList) => {
 									return index !== indexTaskList
-
 								}))
-
 							}
 							} />
-
 					</div>)
-
 				})
 			}
 			<small className="text-muted d-flex text-star mx-2">
 				{taskList.length == 0 ? "No hay pendientes, añadir tareas" : taskList.length + " item left"}
-
 			</small>
-
 		</div>
 	);
 };
