@@ -8,14 +8,10 @@ const Home = () => {
 
 	let arrayTask = [];
 	const [taskList, setTaskList] = useState([]);
-	const [deleteTask, setDeleteTask] = useState(-1);
-
+	
 	const handleKeyDown = (event) => {
 		if (event.keyCode === 13) {
-			let copyTasks = [...taskList]
-			copyTasks.push(event.target.value)
-			setTaskList(copyTasks)
-			console.log(taskList)
+			setTaskList([...taskList, event.target.value])
 			event.target.value = "";
 		};
 
@@ -31,19 +27,25 @@ const Home = () => {
 			{
 				taskList.map((task, index) => {
 					return (<div className="position-relative mt-2">
-						<p className="form-control text-start" rows="1">{task}</p>
-						<button id={index} type="button" className="btn-close btn-close-hover position-absolute top-0 end-0 m-2"
+						<p className="form-control text-start mb-0" rows="1">{task}</p>
+						<button id={index} type="button" className="btn-close btn-close-hover position-absolute top-0 end-0 m-2 mb-0"
 							onClick={() => {
-								taskList.splice(index, 1)
-								console.log({ index })
-								console.log(taskList)
-								setDeleteTask({ index })
+								setTaskList(taskList.filter((value, indexTaskList) => {
+									return index !== indexTaskList
+
+								}))
+
 							}
 							} />
+
 					</div>)
 
 				})
 			}
+			<small className="text-muted d-flex text-star mx-2">
+				{taskList.length == 0 ? "No hay pendientes, añadir tareas" : taskList.length + " item left"}
+
+			</small>
 
 		</div>
 	);
